@@ -7,6 +7,6 @@
 <title>Welcome</title>
 </head>
 <body>
-Welcome ${name}! You entered ${password} as the password!!
+Welcome ${name}! You can manage your ToDos <a href="/spring-webmvc/todo">here!</a>
 </body>
 </html>
