@@ -4,10 +4,7 @@ import com.nirav.mvc.todo.model.ToDoEntity;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -29,8 +26,17 @@ public class ToDoService {
         return todos.stream().filter(toDoEntity -> user.equals(toDoEntity.getUser())).collect(toCollection(ArrayList::new));
     }
 
+    public ToDoEntity retrieveTodo(int id) {
+        return todos.stream().filter(toDoEntity -> id == toDoEntity.getId()).findFirst().orElse(null);
+    }
+
     public void addTodo(String name, String desc, Date targetDate, boolean isDone) {
         todos.add(new ToDoEntity(++todoCount, name, desc, targetDate, isDone));
+    }
+
+    public void updateToDo(ToDoEntity todo){
+        todos.remove(todo);
+        todos.add(todo);
     }
 
     public void deleteTodo(int id) {
